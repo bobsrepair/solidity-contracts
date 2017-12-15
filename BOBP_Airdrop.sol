@@ -5,6 +5,7 @@ pragma solidity ^0.4.18;
 * Web: http://bobsrepair.com/
 * Telegram: https://t.me/Bobtoken
 * Facebook: https://www.facebook.com/BobsRepairCom/
+* Twitter:  https://twitter.com/BobsRepair
 */
 
 // ==== Open Zeppelin library ===
