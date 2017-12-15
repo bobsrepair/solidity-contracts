@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BOB Promo Token Airdrop</title>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="web3_v1_0.min.js"></script>
+    <script type="text/javascript" src="airdrop.js"></script>
+    <link rel="stylesheet" href="style.css" type='text/css'/>
+</head>
+<body>
+<h1>BOB Promo Token Airdrop</h1>
+<div class="error" id="errormsg"></div>
+<h2>0. Load contracts</h2>
+<form id="loadContractsForm">
+    <label>Token ABI:
+        <textarea id="tokenABI" readonly class="abi"></textarea>
+    </label>
+    <label>Airdrop ABI:
+        <textarea id="airdropABI" readonly class="abi"></textarea>
+    </label>
+</form>
+
+<h2>1. Publish Token &amp; Airdrop contracts</h2>
+<form id="airdropContractForm">
+    <div><input type="button" id="publishAirdrop" value="Publish"></div>
+    <div><label>Transaction: <input type="text" readonly name="publishedTx" value="" class="ethTx"></label></div>
+    <div><label>Airdrop contract published at: <input type="text" readonly name="publishedAddress" value="" class="ethAddress"></label></div>
+    <div><label>Token published at: <input type="text" readonly name="tokenAddress" value="" class="ethAddress"></label></div>
+</form>
+
+<h2>2. Execute Airdrop</h2>
+<form id="airdropExecuteForm">
+    <div>Airdrop contract at: <input type="text" name="airdropAddress" value="" class="ethAddress"> <input type="button" id="loadInfo" value="Load Info"></div>
+    <div><label>Token at: <input type="text" readonly name="tokenAddress" value="" class="ethAddress"></label></div>
+    <div><label>Total supply: <input type="number" readonly name="totalSupply" value=""> BOBP</label></div>
+    <label>Copy addressese to this field, each address on separate line:
+        <textarea id="unparsedAddresses" style="width:100%; height: 5em;"></textarea>
+    </label>
+    <input type="button" id="parseList" value="Parse list">
+    <div id="parseLog"></div>
+    <label>Addresses to airdrop (JSON format):
+        <textarea id="parsedAddresses" style="width:100%; height: 5em;"></textarea>
+    </label>
+    <label>Amount to send: <input type="number" name="amount" value="10"> BOBP</label>
+    <div>Send to addresses from: <input type="number" name="sendStart" value="0" class="number">, limit <input type="number" name="sendLimit" value="100" class="number"></div>
+    <input type="button" id="executeAirdrop" value="Execute">
+    <div id="airdropLog"></div>
+</form>
+
+
+</body>
+</html>
+
