@@ -77,7 +77,7 @@ jQuery(document).ready(function($) {
             let tokenInstance = loadContractInstance(tokenContract, tokenAddress);
             return tokenInstance.methods.totalSupply().call()
             .then(function(result){
-                $('input[name=totalSupply]',form).val(result);
+                $('input[name=totalSupply]',form).val(web3.utils.fromWei(result));
             });
         });
 
@@ -128,6 +128,7 @@ jQuery(document).ready(function($) {
         airdropLog.append('<div>Starting airdrop '+web3.utils.fromWei(airdropAmount) +' BOBP to '+addresses.length+' addresses in batches of '+sendLimit+' addresses per transaction, starting from address '+sendStart+'.</div>');
         function sendTokens(start) {
             let end = start+sendLimit;
+            if(end > addresses.length) end = addresses.length;
             if(start >= end) {
                 console.error('Start >= End!', start, sendLimit, end); return;
             }
@@ -140,7 +141,9 @@ jQuery(document).ready(function($) {
             .on('transactionHash', function(hash){
                 tx = hash;
                 airdropLog.append('<div>Transaction <i>'+tx+'</i>: addresses '+start+' - '+end+' published.</div>');
-                sendTokens(end);
+                if(end != addresses.length){
+                    sendTokens(end);
+                }
             })
             .on('receipt', function(receipt){
                 airdropLog.append('<div>Transaction <i>'+receipt.transactionHash+'</i> ('+start+' - '+end+') mined.</div>');
